@@ -7,10 +7,20 @@ target("libFreeType")
         os.cd("$(projectdir)/Vendor/freetype")
         if (is_mode("debug"))
         then
-            os.run("cmake -B build -D CMAKE_BUILD_TYPE=Debug CMAKE_CXX_FLAGS=\"/MT\"")
+            os.run("cmake -B build -D FT_DISABLE_ZLIB=TRUE \
+                                   -D FT_DISABLE_BZIP2=TRUE \
+                                   -D FT_DISABLE_PNG=TRUE \
+                                   -D FT_DISABLE_HARFBUZZ=TRUE \
+                                   -D FT_DISABLE_BROTLI=TRUE \
+                                   -D CMAKE_BUILD_TYPE=Debug CMAKE_CXX_FLAGS=\"/MT\"")
             os.run("cmake --build build")
         else
-            os.run("cmake -B build -D CMAKE_BUILD_TYPE=Release CMAKE_CXX_FLAGS=\"/MT\"")
+            os.run("cmake -B build -D FT_DISABLE_ZLIB=TRUE \
+                                   -D FT_DISABLE_BZIP2=TRUE \
+                                   -D FT_DISABLE_PNG=TRUE \
+                                   -D FT_DISABLE_HARFBUZZ=TRUE \
+                                   -D FT_DISABLE_BROTLI=TRUE \
+                                   -D CMAKE_BUILD_TYPE=Release CMAKE_CXX_FLAGS=\"/MT\"")
             os.run("cmake --build build")
         end
         os.cd("$(projectdir)")
