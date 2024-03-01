@@ -42,3 +42,4 @@ target("libFreeType")
         end
     end)
     
+    set_group("Vendor")
